@@ -1,0 +1,14 @@
+<view class='container'>
+  <swiper class="swiper_box" autoplay="true" interval="2000" indicator-dots="true">
+    <block wx:for="{{ images }}" wx:key="">
+      <swiper-item>
+        <image src="{{ item.path }}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='btn-area'>
+    <navigator url='/pages/game/add'>
+      <button type="primary">开始新游戏</button>
+    </navigator>
+  </view>
+</view>

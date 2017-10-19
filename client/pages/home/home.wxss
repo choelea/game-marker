@@ -1,0 +1,14 @@
+swiper{
+  width: 100%;
+}
+image{
+  width: 100%;
+}
+.container{
+  padding: 10rpx;
+}
+.btn-area{
+  margin-top: 50rpx;
+  padding: 10rpx;
+  width: 100%;
+}

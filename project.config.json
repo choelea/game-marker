@@ -1,0 +1,8 @@
+{
+	"client": "./client",
+	"svr": "./server",
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"appid": "wxf2383817a3ac1f8d",
+	"projectname": "game-marker"
+}
