@@ -19,9 +19,11 @@ const CONF = {
     mysql: {
         host: 'localhost',
         port: 3306,
-        user: 'root',
-        db: 'gamemarker',
-        pass: 'wxf2383817a3ac1f8d',
+        // user: 'root',
+        // pass: 'game-marker123',
+        user: 'okchem',
+        pass: 'okchem',
+        db: 'cAuth',
         char: 'utf8mb4'
     },
 
@@ -45,5 +47,5 @@ const CONF = {
     // 微信登录态有效期
     wxLoginExpires: 7200
 }
-
+console.log(process.env.NODE_ENV === 'local')
 module.exports = process.env.NODE_ENV === 'local' ? Object.assign({}, CONF, require('./config.local')) : CONF;

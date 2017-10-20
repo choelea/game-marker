@@ -17,12 +17,14 @@ const sdkConfig = (() => {
             return {}
         }
     } catch (e) {
+        console.log('cannot find the give file:' + sdkConfigPath)
         return {}
     }
 
     // 返回配置信息
     try {
         const content = fs.readFileSync(sdkConfigPath, 'utf8')
+        console.log(content)
         return JSON.parse(content)
     } catch (e) {
         // 如果配置读取错误或者 JSON 解析错误，则输出空配置项
