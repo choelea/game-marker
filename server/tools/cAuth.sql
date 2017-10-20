@@ -37,14 +37,14 @@ CREATE TABLE `cSessionInfo` (
 
 CREATE TABLE `game` (
   `name` varchar(20) COLLATE utf8_bin NOT NULL,
-  `min_score` int(11) NOT NULL,
+  `minScore` int(11) NOT NULL,
   `owner` varchar(50) COLLATE utf8_bin NOT NULL,
   `records` json DEFAULT NULL,
   `createdBy` varchar(50) COLLATE utf8_bin NOT NULL,
   `createdTS` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedBy` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updatedTS` timestamp NULL DEFAULT NULL,
-  `id` varchar(32) COLLATE utf8_bin NOT NULL
+  `id` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------

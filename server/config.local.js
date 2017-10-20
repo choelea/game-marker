@@ -12,13 +12,13 @@ module.exports = {
         db: 'cAuth',
         char: 'utf8mb4'
     },
-    'serverHost': 'p0r9m75z.qcloud.la',
-    'tunnelServerUrl': 'https://p0r9m75z.ws.qcloud.la',
-    'tunnelSignatureKey': 'AUaqzVJpN6XiBj2djeLJ6XhynSf0PN8XqgMpCfeX',
-    'qcloudAppId': 1253215753,
-    'qcloudSecretId': 'AKIDQhmdHiPuiIenlWPPWQ7aqsgHeoiM6riM',
-    'qcloudSecretKey': 'VkjSw98rKXKsABwRfdKlwqUu86oGo8E6',
-    'wxMessageToken': 'p0r9m75z',
-    'networkTimeout': 30000
+    serverHost: 'p0r9m75z.qcloud.la',
+    tunnelServerUrl: 'https://p0r9m75z.ws.qcloud.la',
+    tunnelSignatureKey: 'AUaqzVJpN6XiBj2djeLJ6XhynSf0PN8XqgMpCfeX',
+    qcloudAppId: 1253215753,
+    qcloudSecretId: 'AKIDQhmdHiPuiIenlWPPWQ7aqsgHeoiM6riM',
+    qcloudSecretKey: 'VkjSw98rKXKsABwRfdKlwqUu86oGo8E6',
+    wxMessageToken: 'p0r9m75z',
+    networkTimeout: 30000
 
 }
