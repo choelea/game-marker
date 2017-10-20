@@ -5,6 +5,15 @@ const response = require('./middlewares/response')
 const bodyParser = require('./middlewares/bodyparser')
 const config = require('./config')
 
+app.use(async (ctx, next) => {
+    try {
+        await next()
+    } catch (err) {
+        ctx.status = err.status || 500
+        ctx.body = err.message
+        ctx.app.emit('error', err, ctx)
+    }
+})
 
 // 使用响应处理中间件
 app.use(response)
