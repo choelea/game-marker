@@ -6,8 +6,10 @@ function game(name, minScore, owner, createdBy, createdTS) {
 }
 
 async function post(ctx, next) {
+    console.log('###################################################')
     const body = ctx.request.body
-    console.log('Starting.......')
+    console.log('Starting.......' + body)
+    console.log(ctx.state.$wxInfo)
     let errorMsg = null
     const result = await mysql('game').insert(game('桌球', 5, uuidv1(), uuidv1(), new Date())).catch(function (error) {
         errorMsg = 'error'
