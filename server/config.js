@@ -20,7 +20,7 @@ const CONF = {
         host: 'localhost',
         port: 3306,
         user: 'root',
-        pass: 'game-marker123',
+        pass: 'Game-Marker!123',
         db: 'cAuth',
         char: 'utf8mb4'
     },
