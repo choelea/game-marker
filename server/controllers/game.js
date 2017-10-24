@@ -1,24 +1,37 @@
 const { mysql } = require('../qcloud')
 const uuidv1 = require('uuid/v1')
 
-function game(name, minScore, owner, createdBy, createdTS) {
-    return { name, minScore, owner, createdBy, createdTS, id: uuidv1() }
+function game(name, minScore, owner, createdBy, createdTS, id) {
+    return { name, minScore, owner, createdBy, createdTS, id }
 }
-
+function gameMember(game, userid, username, avatarUrl) {
+    return { game, userid, username, avatarUrl }
+}
 async function post(ctx, next) {
     console.log('###################################################')
-    const body = ctx.request.body
-    console.log('Starting.......' + body)
     console.log(ctx.state.$wxInfo)
-    let errorMsg = null
-    const result = await mysql('game').insert(game('桌球', 5, uuidv1(), uuidv1(), new Date())).catch(function (error) {
-        errorMsg = 'error'
-    })
-    if (errorMsg) {
-        ctx.body = errorMsg
+    const body = ctx.request.body
+    const userInfo = ctx.state.$wxInfo.userinfo
+    const gameId = uuidv1()
+    await mysql('game').insert(game(body.name, body.minScore, userInfo.openId, userInfo.openId, new Date(), gameId))
+    await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
+    ctx.body = ctx.body || {}
+    ctx.body.gameId = gameId
+}
+
+async function get(ctx, next) {
+    const gameId = ctx.params.id
+    let currentGame = null
+    const games = await mysql('game').where({ id: gameId }).select('name', 'minScore', 'records')
+    if (games && games.length > 0) {
+        currentGame = games[0]
+        const members = await mysql('gamemember').where({ game: gameId }).select('userid', 'username', 'avatarUrl')
+        currentGame.members = members
+        ctx.body = ctx.body || {}
+        ctx.body.game = currentGame
     } else {
-        ctx.body = 'success'
+        ctx.throw(400, `No game founded with game id:${gameId}`)
     }
 }
 
-module.exports = { post }
+module.exports = { post, get }

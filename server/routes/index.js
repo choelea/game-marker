@@ -33,5 +33,6 @@ router.get('/message', controllers.message.get)
 router.post('/message', controllers.message.post)
 
 // Game 
-router.post('/game', controllers.game.post)
+router.post('/games', validationMiddleware, controllers.game.post)
+router.get('/games/:id', validationMiddleware, controllers.game.get)
 module.exports = router

@@ -19,10 +19,8 @@ const CONF = {
     mysql: {
         host: 'localhost',
         port: 3306,
-        // user: 'root',
-        // pass: 'game-marker123',
-        user: 'okchem',
-        pass: 'okchem',
+        user: 'root',
+        pass: 'game-marker123',
         db: 'cAuth',
         char: 'utf8mb4'
     },
@@ -45,6 +43,17 @@ const CONF = {
     },
 
     // 微信登录态有效期
-    wxLoginExpires: 7200
+    wxLoginExpires: 7200,
+
+    // 其他配置 ...
+    serverHost: '633951563.gamemarker.club',
+    tunnelServerUrl: 'http://tunnel.ws.qcloud.la',
+    tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
+    // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.qcloud.com/capi
+    qcloudAppId: '9059c5a4-c143-47be-a635-54c3fffa78d8',
+    qcloudSecretId: 'AKIDsdEdqr3GftuiJhrreBYnqhLn380fGPWV',
+    qcloudSecretKey: 'vgkiW8YllY9aoqfHl3BA0eHqGUXN0mUz',
+    wxMessageToken: 'weixinmsgtoken',
+    networkTimeout: 30000
 }
-module.exports = process.env.NODE_ENV === 'local' ? Object.assign({}, CONF, require('./config.local')) : CONF;
+module.exports = process.env.NODE_ENV === 'local' ? Object.assign({}, CONF, require('./config.local')) : CONF

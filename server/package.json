@@ -6,7 +6,8 @@
   "scripts": {
     "start": "pm2 start process.prod.json --no-daemon",
     "local-dev": "nodemon --config nodemon.json app.js",
-    "initdb": "npm install && node tools/initdb.js"
+    "initdb": "npm install && node  tools/initdb.js",
+    "initlocaldb": "cross-env NODE_ENV=local node  tools/initdb.js"
   },
   "author": "Jason",
   "license": "MIT",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
+    "cross-env": "^5.1.0",
     "debug": "^2.6.8",
     "eslint": "^3.9.1",
     "eslint-config-standard": "^6.2.1",

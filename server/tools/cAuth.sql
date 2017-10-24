@@ -56,7 +56,8 @@ CREATE TABLE `game` (
 CREATE TABLE `gamemember` (
   `userid` varchar(50) COLLATE utf8_bin NOT NULL,
   `game` varchar(50) COLLATE utf8_bin NOT NULL,
-  `username` varchar(100) COLLATE utf8_bin NOT NULL
+  `username` varchar(100) COLLATE utf8_bin NOT NULL,
+  `avatarUrl` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -85,7 +86,7 @@ ALTER TABLE `gamemember`
 -- Constraints for table `gamemember`
 --
 ALTER TABLE `gamemember`
-  ADD CONSTRAINT `FK-gamememeber-game` FOREIGN KEY (`game`) REFERENCES `game` (`id`) ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK-gamememeber-game` FOREIGN KEY (`game`) REFERENCES `game` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
