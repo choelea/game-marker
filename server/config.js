@@ -3,10 +3,10 @@ const CONF = {
     rootPathname: '',
 
     // 微信小程序 App ID
-    appId: '',
+    appId: 'wxf2383817a3ac1f8d',
 
     // 微信小程序 App Secret
-    appSecret: '',
+    appSecret: '24198aa7b1196970939633b2d673863b',
 
     // 是否使用腾讯云代理登录小程序
     useQcloudLogin: true,
@@ -46,7 +46,7 @@ const CONF = {
     wxLoginExpires: 7200,
 
     // 其他配置 ...
-    serverHost: '633951563.gamemarker.club',
+    serverHost: 'www.yuyoucloud.com',
     tunnelServerUrl: 'http://tunnel.ws.qcloud.la',
     tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
     // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.qcloud.com/capi
