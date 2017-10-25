@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/chat/chat",
     "pages/game/add",
-    "pages/index/index",
     "pages/home/home",
     "pages/game/gaming"
   ],
