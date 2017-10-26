@@ -3,8 +3,17 @@ const CONF = {
     rootPathname: '',
 
     // 是否使用腾讯云代理登录小程序
-    useQcloudLogin: true,
+    useQcloudLogin: false,
 
+    // initdb will use this mysql config
+    mysql: {
+        host: 'localhost',
+        port: 3306,
+        user: 'root',
+        pass: 'Game-Marker!123',
+        db: 'cAuth',
+        char: 'utf8mb4'
+    },
     cos: {
         /**
          * 区域

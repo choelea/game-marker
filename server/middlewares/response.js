@@ -19,6 +19,7 @@ module.exports = async (ctx, next) => {
             data: ctx.state.data !== undefined ? ctx.state.data : {}
         }
     } catch (e) {
+        console.log('error ---------------------- '+e)
         // catch 住全局的错误信息
         debug('Catch Error: %o', e)
         // 设置状态码为 500 - 服务端错误
