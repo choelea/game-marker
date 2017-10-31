@@ -12,12 +12,17 @@ function gameMember(gameId, userid, username, avatarUrl) {
 async function post(req, res) {
   logger.debug('###################################################')
   logger.debug(req.$wxInfo)
-  const { body } = req
-  const userInfo = req.$wxInfo.userinfo
-  const gameId = uuidv1()
-  await mysql('game').insert(game(body.name, body.minScore, userInfo.openId, userInfo.openId, new Date(), gameId))
-  await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
-  res.json(gameId)
+  try {
+    const { body } = req
+    const userInfo = req.$wxInfo.userinfo
+    const gameId = uuidv1()
+    await mysql('game').insert(game(body.name, body.minScore, userInfo.openId, userInfo.openId, new Date(), gameId))
+    await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
+    res.json(gameId)
+  } catch (e) {
+    logger.debug(e)
+    res.status(500).json('Error happened')
+  }
 }
 
 
