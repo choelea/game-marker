@@ -8,7 +8,7 @@ module.exports = {
     // First application
     {
       name: 'game-marker-express',
-      script: 'app.js',
+      script: './bin/www',
       node_args: '--harmony',
       // env: {  If we don't comment here, it will override below deploy config
       //   PORT: 3011
