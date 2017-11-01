@@ -7,8 +7,8 @@ module.exports = {
   mysql: {
     host: 'localhost',
     port: 3306,
-    user: 'okchem',
-    pass: 'okchem',
+    user: 'wechat',
+    pass: 'WeChat!123',
     db: 'cAuth',
     char: 'utf8mb4',
   },
