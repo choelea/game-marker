@@ -36,7 +36,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/choelea/game-marker.git',
       path: '/data/release/game-marker', // 目标服务器部署地址
-      'post-deploy': 'cd server-express && npm install && pm2 reload process.js --env production',
+      'post-deploy': 'cd server-express && npm install && pm2 reload ecosystem.config.js --env production',
     },
   },
 }
