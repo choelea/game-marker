@@ -16,6 +16,7 @@ module.exports = {
       env_production: {
         NODE_ENV: 'prd',
         PORT: 3001,
+        DEBUG: '*,-nodemon:*,-nodemon,-knex:pool',
       },
       env_preprd: {
         NODE_ENV: 'preprd',
