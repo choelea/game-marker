@@ -16,9 +16,9 @@ function authorization(req, res, next) {
     myQcloud.auth.authorization(req).then((result) => {
       if (result && result.loginState === 1) {
         console.log('Initial......')
-        req.$wxInfo = req.$wxInfo || {}
-        req.$wxInfo.userInfo = result.userinfo
-        req.$wxInfo.loginState = result.loginState
+        req.wxInfo = req.wxInfo || {}
+        req.wxInfo.userInfo = result.userinfo
+        req.wxInfo.loginState = result.loginState
         next()
       } else {
         logger.error('Failed to authorize the user')
