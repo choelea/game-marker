@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 })
 
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   // render the error page
   if (err) { logger.error(err) }
   res.status(err.status || 500)

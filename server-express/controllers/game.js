@@ -9,9 +9,8 @@ function game(name, minScore, owner, createdBy, createdTS, id) {
 function gameMember(gameId, userid, username, avatarUrl) {
   return { gameId, userid, username, avatarUrl }
 }
-async function post(req, res) {
+async function post(req, res, next) {
   logger.debug('###################################################')
-  logger.debug(req.$wxInfo)
   try {
     const { body } = req
     const userInfo = req.$wxInfo.userinfo
@@ -20,8 +19,12 @@ async function post(req, res) {
     await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
     res.json(gameId)
   } catch (e) {
-    logger.debug(e)
-    res.status(500).json('Error happened')
+    // logger.error(e)
+    const err = new Error('Not Found')
+    err.status = 500
+    err.code = 'ERR_GM_HHH'
+    err.message = 'Failed to create new game!'
+    next(err)
   }
 }
 
@@ -40,7 +43,7 @@ async function get(req, res) {
       res.status(400).json({ msg: 'Cannot find the given game' })
     }
   } catch (e) {
-    logger.debug(e)
+    // logger.debug(e)
     res.status(500).json('Error happened')
   }
 }

@@ -15,7 +15,6 @@ function authorization(req, res, next) {
   try {
     myQcloud.auth.authorization(req).then((result) => {
       if (result && result.loginState === 1) {
-        console.log('Initial......')
         req.wxInfo = req.wxInfo || {}
         req.wxInfo.userInfo = result.userinfo
         req.wxInfo.loginState = result.loginState
