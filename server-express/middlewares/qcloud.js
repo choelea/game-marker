@@ -9,17 +9,26 @@ const logger = require('../utils/logger')
 // 初始化 SDK
 // 将基础配置和 sdk.config 合并传入 SDK 并导出初始化完成的 SDK
 const myQcloud = qcloud(config)
+const { mysql } = myQcloud.mysql
 
-module.exports.mysql = myQcloud.mysql
-// express
-module.exports.authorization = (req, res, next) => {
-  myQcloud.auth.authorization(req).then((result) => {
-    if (result && result.loginState === 0) {
-      req.$wxInfo.userInfo = result.userinfo
-      req.$wxInfo.loginState = result.loginState
-    }
-    return next()
-  })
-  logger.error('Failed to authorize the user')
-  return res.sendStatus(401)
+function authorization(req, res, next) {
+  try {
+    myQcloud.auth.authorization(req).then((result) => {
+      if (result && result.loginState === 1) {
+        console.log('Initial......')
+        req.$wxInfo = req.$wxInfo || {}
+        req.$wxInfo.userInfo = result.userinfo
+        req.$wxInfo.loginState = result.loginState
+        next()
+      } else {
+        logger.error('Failed to authorize the user')
+        res.sendStatus(401)
+      }
+    })
+  } catch (err) {
+    logger.error(err)
+    res.sendStatus(401)
+  }
 }
+
+module.exports = { mysql, authorization }

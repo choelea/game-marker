@@ -29,14 +29,19 @@ async function post(req, res) {
 async function get(req, res) {
   const gameId = req.params.id
   let currentGame = null
-  const games = await mysql('game').where({ id: gameId }).select('name', 'minScore', 'records')
-  if (games && games.length > 0) {
-    currentGame = games[0]
-    const members = await mysql('gamemember').where({ game: gameId }).select('userid', 'username', 'avatarUrl')
-    currentGame.members = members
-    res.json({ game: currentGame })
-  } else {
-    res.status(400).json({ msg: 'Cannot find the given game' })
+  try {
+    const games = await mysql('game').where({ id: gameId }).select('name', 'minScore', 'records')
+    if (games && games.length > 0) {
+      currentGame = games[0]
+      const members = await mysql('gamemember').where({ game: gameId }).select('userid', 'username', 'avatarUrl')
+      currentGame.members = members
+      res.json({ game: currentGame })
+    } else {
+      res.status(400).json({ msg: 'Cannot find the given game' })
+    }
+  } catch (e) {
+    logger.debug(e)
+    res.status(500).json('Error happened')
   }
 }
 

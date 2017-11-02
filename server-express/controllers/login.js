@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   // 登录信息会被存储到 ctx.state.$wxInfo
   // 具体查看：
   if (req.$wxInfo.loginState) {
-    res.json({ data: req.$wxInfo.userinfo })
+    res.json({ data: req.$wxInfo.userInfo })
   }
-  res.sendStatus(401)
+  res.status(401).json({ code: '-1' })
 }
