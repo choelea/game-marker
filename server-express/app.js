@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const route = require('./routes')
 const logger = require('./utils/logger')
 const accessLogger = require('./middlewares/accessLogger')
-const respond = require('./middlewares/respond')
+// const respond = require('./middlewares/respond')
 
 // starting express
 const app = express()
@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 app.use('/', route)
 
-app.use(respond)
+// app.use(respond)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
