@@ -19,7 +19,7 @@ async function post(req, res, next) {
     await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
     res.json(gameId)
   } catch (e) {
-    // logger.error(e)
+    logger.error(e)
     const err = new Error('Not Found')
     err.status = 500
     err.code = 'ERR_GM_HHH'
