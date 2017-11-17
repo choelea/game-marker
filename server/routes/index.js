@@ -10,6 +10,8 @@ const controllers = require('../controllers')
 // 这里展示如何使用 Koa 中间件完成登录态的颁发与验证
 const { auth: { authorizationMiddleware, validationMiddleware } } = require('../qcloud')
 
+router.get('/test', (ctx, next) => { ctx.body = { msg: 'This is a test' } })
+
 // --- 登录与授权 Demo --- //
 // 登录接口 /weapp/login
 router.get('/login', authorizationMiddleware, controllers.login)

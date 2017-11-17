@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   // 登录信息会被存储到 ctx.state.$wxInfo
   // 具体查看：
   if (req.wxInfo && req.wxInfo.loginState) {
-    req.$data = req.wxInfo.userInfo
+    req.$data = req.wxInfo.userinfo
   }
   next()
 }

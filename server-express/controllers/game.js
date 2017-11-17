@@ -12,10 +12,10 @@ function gameMember(gameId, userid, username, avatarUrl) {
 async function post(req, res, next) {
   try {
     const { body } = req
-    const userInfo = req.wxInfo.userinfo
+    const { userinfo } = req.wxInfo
     const gameId = uuidv1()
-    await mysql('game').insert(game(body.name, body.minScore, userInfo.openId, userInfo.openId, new Date(), gameId))
-    await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
+    await mysql('game').insert(game(body.name, body.minScore, userinfo.openId, userinfo.openId, new Date(), gameId))
+    await mysql('gamemember').insert(gameMember(gameId, userinfo.openId, userinfo.nickName, userinfo.avatarUrl))
     // res.json(gameId)
     req.$data = gameId
     next()
