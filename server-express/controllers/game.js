@@ -10,14 +10,15 @@ function gameMember(gameId, userid, username, avatarUrl) {
   return { gameId, userid, username, avatarUrl }
 }
 async function post(req, res, next) {
-  logger.debug('###################################################')
   try {
     const { body } = req
-    const userInfo = req.$wxInfo.userinfo
+    const userInfo = req.wxInfo.userinfo
     const gameId = uuidv1()
     await mysql('game').insert(game(body.name, body.minScore, userInfo.openId, userInfo.openId, new Date(), gameId))
     await mysql('gamemember').insert(gameMember(gameId, userInfo.openId, userInfo.nickName, userInfo.avatarUrl))
-    res.json(gameId)
+    // res.json(gameId)
+    req.$data = gameId
+    next()
   } catch (e) {
     logger.error(e)
     const err = new Error('Not Found')
@@ -35,10 +36,11 @@ async function get(req, res) {
   try {
     const games = await mysql('game').where({ id: gameId }).select('name', 'minScore', 'records')
     if (games && games.length > 0) {
-      currentGame = games[0]
+      [currentGame] = games
       const members = await mysql('gamemember').where({ game: gameId }).select('userid', 'username', 'avatarUrl')
       currentGame.members = members
-      res.json({ game: currentGame })
+      // res.json({ game: currentGame })
+      req.$data = { game: currentGame }
     } else {
       res.status(400).json({ msg: 'Cannot find the given game' })
     }
