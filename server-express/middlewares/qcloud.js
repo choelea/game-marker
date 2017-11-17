@@ -29,5 +29,23 @@ function authorization(req, res, next) {
     res.sendStatus(401)
   }
 }
+function validation(req, res, next) {
+  try {
+    myQcloud.auth.validation(req).then((result) => {
+      if (result && result.loginState === 1) {
+        req.wxInfo = req.wxInfo || {}
+        req.wxInfo.userInfo = result.userinfo
+        req.wxInfo.loginState = result.loginState
+        next()
+      } else {
+        logger.error('Failed to authorize the user')
+        res.sendStatus(401)
+      }
+    })
+  } catch (err) {
+    logger.error(err)
+    res.sendStatus(401)
+  }
+}
 
-module.exports = { mysql, authorization }
+module.exports = { mysql, authorization, validation }
