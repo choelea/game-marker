@@ -81,7 +81,7 @@ Page({
       success: (response) => {
         console.log(response)
         wx.redirectTo({
-          url: '/pages/game/gaming?id=' + response.data.gameId,
+          url: '/pages/game/gaming?id=' + response.data.data.gameId,
         })
       }
     });

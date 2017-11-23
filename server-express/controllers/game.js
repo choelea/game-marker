@@ -7,7 +7,7 @@ function game(name, minScore, owner, createdBy, createdTS, id) {
   return { name, minScore, owner, createdBy, createdTS, id }
 }
 function gameMember(gameId, userid, username, avatarUrl) {
-  return { gameId, userid, username, avatarUrl }
+  return { game: gameId, userid, username, avatarUrl }
 }
 async function post(req, res, next) {
   try {
@@ -17,7 +17,7 @@ async function post(req, res, next) {
     await mysql('game').insert(game(body.name, body.minScore, userinfo.openId, userinfo.openId, new Date(), gameId))
     await mysql('gamemember').insert(gameMember(gameId, userinfo.openId, userinfo.nickName, userinfo.avatarUrl))
     // res.json(gameId)
-    req.$data = gameId
+    req.$data = { gameId }
     next()
   } catch (e) {
     logger.error(e)

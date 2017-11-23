@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     qcloud.request({
-      url: config.service.host + '/weapp/games/'+options.id,
+      url: config.service.host + '/weapp/games/' + options.id,
       login: true,
       success: (response) => {
         console.log(response)

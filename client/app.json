@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/socket/test",
     "pages/game/add",
     "pages/index/index",
-    "pages/chat/chat",
     "pages/home/home",
-    "pages/game/gaming"
+    "pages/game/gaming",
+    "pages/chat/chat"
   ],
   "window": {
     "backgroundTextStyle": "light",
