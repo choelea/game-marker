@@ -48,4 +48,4 @@ function validation(req, res, next) {
   }
 }
 
-module.exports = { mysql, authorization, validation }
+module.exports = { mysql, authorization, validation, myQcloud }
